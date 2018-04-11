@@ -1,9 +1,10 @@
 body {
     background-color: black;
+    overflow: hidden;
 }
 
 .box {
-    
+
 }
 
 .box p {
@@ -11,8 +12,8 @@ body {
 }
 
 .jumbotron {
-    width: 1500px;
-    margin-left: auto;
+    width: 1000px;
+    margin-left: 145px;
     margin-right: auto;
     background-color: black;
     color: orange;
@@ -50,7 +51,7 @@ body {
 }
 
 .container h2 {
-    transform: translateY(-200px);
+    transform: translateY(-230px);
     font-weight: 500;
     font-size: 4em;
 }
@@ -65,7 +66,7 @@ body {
     width: 1000px;
     margin-left: auto;
     margin-right: auto;
-    transform: translateY(-180px)
+    transform: translateY(-215px)
 }
 
 .pop_item {
@@ -96,42 +97,42 @@ body {
     width: 90px;
     height: 1px;
     background-color: orange;
-    transform: translate(565px, -195px)
+    transform: translate(315px, -195px)
 }
 
 .line2 {
     width: 130px;
     height: 1px;
     background-color: orange;
-    transform: translate(525px, -180px)
+    transform: translate(275px, -180px)
 }
 
 .line3 {
     width: 170px;
     height: 1px;
     background-color: orange;
-    transform: translate(485px, -165px)
+    transform: translate(235px, -165px)
 }
 
 .line4 {
     width: 90px;
     height: 1px;
     background-color: orange;
-    transform: translate(776px, -197px)
+    transform: translate(525px, -197px)
 }
 
 .line5 {
     width: 130px;
     height: 1px;
     background-color: orange;
-    transform: translate(776px, -182px)
+    transform: translate(525px, -182px)
 }
 
 .line6 {
     width: 170px;
     height: 1px;
     background-color: orange;
-    transform: translate(776px, -167px)
+    transform: translate(525px, -167px)
 }
 
 #icon {
@@ -143,6 +144,7 @@ body {
     padding: 0px 8px;
     margin-top: 30px;
     background-color: orange;
+    z-index: 1000;
 }
 
 #meet_text {
