@@ -1,0 +1,152 @@
+body {
+    background-color: black;
+}
+
+.box {
+    
+}
+
+.box p {
+    color: white;
+}
+
+.jumbotron {
+    width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+    color: orange;
+    font-family: 'Dotline';
+    text-align: center;
+}
+
+.jumbotron h1 {
+    padding: 0px;
+    margin: 0px;
+    font-size: 8em;
+}
+
+.jumbotron h2 {
+    padding: 0px;
+    margin: 0px;
+    font-size: 4em;
+    transform: translateY(-65%)
+}
+
+.jumbotron h3 {
+    padding: 0px;
+    margin: 0px;
+    font-size: 3em;
+    transform: translateY(-145px)
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    font-family: 'Dotline';
+    text-align: center;
+    width: 100%;
+}
+
+.container h2 {
+    transform: translateY(-200px);
+    font-weight: 500;
+    font-size: 4em;
+}
+
+.item img {
+    width: 480px;
+    height: 270px;
+    border: 3px solid orange;
+}
+
+.owl-carousel {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    transform: translateY(-180px)
+}
+
+.pop_item {
+    border: 3px solid orange;
+}
+
+.main_btn {
+    height: 50px;
+    width: 300px;
+    background-color: orange;
+    display: inline-block;
+    font-family: 'Dotline';
+    text-align: center;
+    line-height: 55px;
+    font-size: 1.7em;
+    font-weight: 800;
+}
+
+#buttons {
+    height: 50px;
+    width: 630px;
+    margin-left: auto;
+    margin-right: auto;
+    transform: translateY(-200px);
+}
+
+.line1 {
+    width: 90px;
+    height: 1px;
+    background-color: orange;
+    transform: translate(565px, -195px)
+}
+
+.line2 {
+    width: 130px;
+    height: 1px;
+    background-color: orange;
+    transform: translate(525px, -180px)
+}
+
+.line3 {
+    width: 170px;
+    height: 1px;
+    background-color: orange;
+    transform: translate(485px, -165px)
+}
+
+.line4 {
+    width: 90px;
+    height: 1px;
+    background-color: orange;
+    transform: translate(776px, -197px)
+}
+
+.line5 {
+    width: 130px;
+    height: 1px;
+    background-color: orange;
+    transform: translate(776px, -182px)
+}
+
+.line6 {
+    width: 170px;
+    height: 1px;
+    background-color: orange;
+    transform: translate(776px, -167px)
+}
+
+#icon {
+    border-top: 2px solid orange;
+    border-right: 2px solid orange;
+    border-bottom: 2px solid orange;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 0px 8px;
+    margin-top: 30px;
+    background-color: orange;
+}
+
+#meet_text {
+    color: white;
+    font-size: 1.5em;
+    font-family: 'Montserrat'
+}

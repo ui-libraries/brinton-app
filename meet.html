@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="main.css">
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="OwlCarousel2-2.3.3/dist/assets/owl.carousel.min.css">
+        <link rel="stylesheet" href="OwlCarousel2-2.3.3/dist/assets/owl.theme.default.min.css">
+        <script src="OwlCarousel2-2.3.3/dist/owl.carousel.js"></script>
+        <script src="CircleType-master/dist/circletype.min.js"></script>
+        <script>if (window.module) module = window.module;</script>
+        <title>Brinton Entertainment</title>
+    </head>
+    <body>
+        <div id="meet_man">
+            <img id="icon" src="icon.png" width="75" height="75">
+            <div class="jumbotron" style="margin-top: 70px;">
+                <h1 id="curved-5">BRINTON</h1>
+                <h2 id="curved-6">ENTERTAINMENT</h2>
+                <h3>CO.</h3>
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+                <div class="line4"></div>
+                <div class="line5"></div>
+                <div class="line6"></div>
+            </div>
+            <div>
+                <p id="meet_text">The Brinton Collection contains films, slides, projectors, papers, and other documents from the life and career of William Franklin Brinton of Washington, IA. Brinton was an itinerant showman, travelling from Texas to Minnesota to project slides, film, and stage other entertainments during the years 1895-1909. He was also the manager of the Graham Opera House in Washington, which is still an active movie theater today and was recently declared the longest continually operating cinema in the world. Brinton was an eccentric and energetic individual, and the collection not only preserves some of the earliest commercially available film, it also contains material related to Brinton's experimental interests, such as his passion for designing flying machines long before human flight became a reality.</p>
+            </div>
+        </div>
+
+        <script>
+            var ipcRenderer = require('electron').ipcRenderer;
+            $(document).ready(function(){
+                var danceVid = document.getElementById('dance')
+                $('.owl-carousel').owlCarousel({
+                    nav:false,
+                    loop:true,
+                    margin:25,
+                    stagePadding:50,
+                    center:true,
+                });
+                $('#imu_popup').popup({
+                    onopen: function() {
+                    }
+                });
+                $('#dance_popup').popup({
+                    onopen: function() {
+                        danceVid.currentTime=0;
+                        danceVid.play();
+                    },
+                    onclose: function() {
+                        danceVid.pause()
+                    }
+                });
+
+                danceVid.onended = function(){$('#dance_popup').popup('hide')}
+
+                new CircleType(document.getElementById('curved-5')).radius(900);
+                new CircleType(document.getElementById('curved-6')).radius(700);
+                
+                document.getElementById('icon').onclick = function() {
+                    ipcRenderer.send('closeMeet');
+                }
+            });
+        </script>
+    </body>
+</html>
