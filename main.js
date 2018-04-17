@@ -18,14 +18,22 @@ function createWindow() {
         protocol: 'file:',
         slashes: true
     }))
+    let meet = new BrowserWindow({parent: main_win, show: false, fullscreen: true, frame: false})
+    meet.loadURL(url.format({
+        pathname: path.join(__dirname, 'meet.html'),
+        protocol: 'file:',
+        slashes: true
+    }))
 
     main_win.webContents.openDevTools()
     nowShowing.webContents.openDevTools()
+    meet.webContents.openDevTools()
+
 
     main_win.on('closed', () => {
         main_win = null
     })
-    
+
     ipcMain.on('closeShowing', function() {
         nowShowing.hide()
     })
@@ -33,6 +41,17 @@ function createWindow() {
     ipcMain.on('openShowing', function() {
         nowShowing.show()
     })
+
+    ipcMain.on('closeMeet', function() {
+        meet.hide()
+    })
+
+    ipcMain.on('openMeet', function() {
+        meet.show()
+    })
+
 }
+
+
 
 app.on('ready', createWindow)

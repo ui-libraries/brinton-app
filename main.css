@@ -149,6 +149,39 @@ body {
 
 #meet_text {
     color: white;
-    font-size: 1.5em;
-    font-family: 'Montserrat'
+    font-size: 1em;
+    font-family: 'Montserrat';
+    width: 830px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#about-content{
+  margin-top: -100px;
+}
+.about-title{
+  font-size:2em;
+  color: white;
+  font-family: 'Montserrat';
+  width: 830px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.about-gallery-dates{
+  font-size:1.5em;
+  color: white;
+  font-family: 'Montserrat';
+  width: 830px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#home-video-popup{
+  margin-top:-180px;
+  margin-left: auto;
+  margin-right: auto;
+  width:600px;
+}
+
+.clickSwitch{
+  margin-left:30%;
+  width:300px;
 }

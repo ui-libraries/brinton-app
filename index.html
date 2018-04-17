@@ -39,10 +39,35 @@
             </div>
             <div id="buttons">
                 <div class="main_btn" id="watch" style="margin-right: 15px;">WATCH THE FILMS</div>
-                <div class="main_btn" id="meet">MEET THE MAN</div>
+                <div class="main_btn" id="meet">GALLERY INFO</div>
+            </div>
+            <div id="home-video-popup">
+                <iframe id="home-video" class="pop_item" width="600" height="315" src="https://www.youtube.com/embed/9sE2i7S1P_g?rel=0&loop=1&controls=0&showinfo=0&autoplay=1&disablekb=1&modestbranding=1&disablekb=1&enablejsapi=1" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
 
+
+        <script>
+          //imported from ideal repo
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            var player;
+            function onYouTubeIframeAPIReady() {
+            	player = new YT.Player('home-video', {
+            		events: {
+            			'onStateChange':
+            					 function(e){
+            							 if (e.data === YT.PlayerState.ENDED) {
+            									 player.playVideo();
+            							 }
+            					 }
+            				 	}
+            	});
+            }
+        </script>
         <script>
             var ipcRenderer = require('electron').ipcRenderer;
             $(document).ready(function(){
