@@ -93,7 +93,12 @@
 		}
 		
         //$("#image").fadeOut(5000, function() {
-        $(".clickSwitch").draggable();
+        $(".clickSwitch").draggable({
+			containment: 'window',
+		});
+		$('.clickSwitch').resizable({
+			minWidth:300,
+		});
 		
 		var i=2;
 		$(".clickSwitch").click(function() {
@@ -129,43 +134,43 @@
                 $('#lanternA_popup').popup({
                   onopen: function() {
 					i=2;
-					$('A').attr("src", 'images/lanternA%20(1).jpg')
-                  }
+					$('#A').attr("src", 'images/lanternA%20(1).jpg')
+                  },
                 });
                 $('#lanternB_popup').popup({
                   onopen: function() {
 					i=2;
-					$('B').attr("src", 'images/lanternB%20(1).jpg')
+					$('#B').attr("src", 'images/lanternB%20(1).jpg')
                   }
                 });
 				$('#lanternC_popup').popup({
                   onopen: function() {
 					i=2;
-					$('C').attr("src", 'images/lanternC%20(1).jpg')
+					$('#C').attr("src", 'images/lanternC%20(1).jpg')
                   }
                 });
 				$('#lanternD_popup').popup({
                   onopen: function() {
 					i=2;
-					$('D').attr("src", 'images/lanternD%20(1).jpg')
+					$('#D').attr("src", 'images/lanternD%20(1).jpg')
                   }
                 });
 				$('#lanternE_popup').popup({
                   onopen: function() {
 					i=2;
-					$('E').attr("src", 'images/lanternE%20(1).jpg')
+					$('#E').attr("src", 'images/lanternE%20(1).jpg')
                   }
                 });
 				$('#lanternF_popup').popup({
                   onopen: function() {
 					i=2;
-					$('F').attr("src", 'images/lanternF%20(1).jpg')
+					$('#F').attr("src", 'images/lanternF%20(1).jpg')
                   }
                 });
 				$('#lanternG_popup').popup({
                   onopen: function() {
 					i=2;
-					$('G').attr("src", 'images/lanternG%20(1).jpg')
+					$('#G').attr("src", 'images/lanternG%20(1).jpg')
                   }
                 });
                 
