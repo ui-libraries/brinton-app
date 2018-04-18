@@ -29,8 +29,8 @@
         <div id="meet_man">
             <img id="icon" src="icon.png" width="75" height="75">
             <div class="jumbotron" style="margin-top: -150px;">
-                <h1 id="curved-5">BRINTON</h1>
-                <h2 id="curved-6">ENTERTAINMENT</h2>
+                <h1 id="curved-7">BRINTON</h1>
+                <h2 id="curved-8">ENTERTAINMENT</h2>
                 <h3>CO.</h3>
                 <div class="line1"></div>
                 <div class="line2"></div>
@@ -38,11 +38,6 @@
                 <div class="line4"></div>
                 <div class="line5"></div>
                 <div class="line6"></div>
-                <div id="about-content">
-                    <p class="about-title">THE EMERGENCE OF EARLY FILM IN AMERICA</p>
-                    <p class="about-gallery-dates">Visit us in the Main Library Gallery April 23 – August 3</p>
-                    <p id="meet_text">The Brinton Collection contains films, slides, projectors, papers, and other documents from the life and career of William Franklin Brinton of Washington, IA. Brinton was an itinerant showman, travelling from Texas to Minnesota to project slides, film, and stage other entertainments during the years 1895-1909. He was also the manager of the Graham Opera House in Washington, which is still an active movie theater today and was recently declared the longest continually operating cinema in the world. Brinton was an eccentric and energetic individual, and the collection not only preserves some of the earliest commercially available film, it also contains material related to Brinton's experimental interests, such as his passion for designing flying machines long before human flight became a reality.</p>
-                </div>
             </div>
         </div>
 
@@ -51,11 +46,11 @@
             $(document).ready(function(){
 
 
-                new CircleType(document.getElementById('curved-5')).radius(900);
-                new CircleType(document.getElementById('curved-6')).radius(700);
+                new CircleType(document.getElementById('curved-7')).radius(900);
+                new CircleType(document.getElementById('curved-8')).radius(700);
 
                 document.getElementById('icon').onclick = function() {
-                    ipcRenderer.send('closeMeet');
+                    ipcRenderer.send('closeMap');
                 }
 
             });

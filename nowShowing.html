@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -58,25 +59,32 @@
 			  <div class= "item lanternG_popup_open"><img id="image" src="images/lanternG%20(1).jpg" /></div>
             </div>
 
-            <div id="lanternA_popup">
+            <div class="popups" id="lanternA_popup">
+			<p>TAP IMAGE FOR MORE</p>
               <img width="auto" height="25%" class="clickSwitch" id="A" src="images/lanternA%20(1).jpg">
             </div>
-            <div id="lanternB_popup">
+            <div  class="popups" id="lanternB_popup">
+			<p>TAP IMAGE FOR MORE</p>
               <img width="auto" height="25%" class="clickSwitch" id="B" src="images/lanternB%20(1).jpg">
             </div>
-			<div id="lanternC_popup">
+			<div  class="popups" id="lanternC_popup">
+			<p>TAP IMAGE FOR MORE</p>
               <img width="auto" height="25%" class="clickSwitch" id="C" src="images/lanternC%20(1).jpg">
             </div>
-			<div id="lanternD_popup">
+			<div  class="popups" id="lanternD_popup">
+			<p>TAP IMAGE FOR MORE</p>
               <img width="auto" height="25%" class="clickSwitch" id="D" src="images/lanternD%20(1).jpg">
             </div>
-			<div id="lanternE_popup">
+			<div  class="popups" id="lanternE_popup">
+			<p>TAP IMAGE FOR MORE</p>
               <img width="auto" height="25%" class="clickSwitch" id="E" src="images/lanternE%20(1).jpg">
             </div>
-			<div id="lanternF_popup">
+			<div  class="popups" id="lanternF_popup">
+			<p>TAP IMAGE FOR MORE</p>
               <img width="auto" height="25%" class="clickSwitch" id="F" src="images/lanternF%20(1).jpg">
             </div>
-			<div id="lanternG_popup">
+			<div  class="popups" id="lanternG_popup">
+			<p>TAP IMAGE FOR MORE</p>
               <img width="auto" height="25%" class="clickSwitch" id="G" src="images/lanternG%20(1).jpg">
             </div>
         </div>
@@ -93,17 +101,13 @@
 		}
 		
         //$("#image").fadeOut(5000, function() {
-        $(".clickSwitch").draggable({
+        /*$(".clickSwitch").draggable({
 			containment: 'window',
-		});
-		$('.clickSwitch').resizable({
-			minWidth:300,
-		});
+		});*/
 		
 		var i=2;
 		$(".clickSwitch").click(function() {
 			var setLet = this.id;
-			console.log(setLet);
 			if (i>setNum[setLet]) {
 				i=1;
 				$('#'+setLet).attr("src", 'images/lantern'+setLet+'%20('+i.toString()+').jpg')
@@ -184,6 +188,10 @@
                     ipcRenderer.send('closeShowing');
                 }
             });
+			
+			window.onclick = function() {
+				ipcRenderer.send('reset');
+			}
         </script>
     </body>
 </html>
