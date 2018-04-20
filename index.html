@@ -42,9 +42,11 @@
                 <div class="main_btn" id="meet" style="margin-right: 15px;">GALLERY INFO</div>
 				<div class="main_btn" id="map">SEE THE MAP</div>
             </div>
+            <div id="embed-wrapper">
             <div id="home-video-popup">
                 <iframe id="home-video" class="pop_item" width="600" height="315" src="https://www.youtube.com/embed/9sE2i7S1P_g?rel=0&loop=1&controls=0&showinfo=0&autoplay=1&disablekb=1&modestbranding=1&disablekb=1&enablejsapi=1" frameborder="0" allowfullscreen></iframe>
             </div>
+          </div>
         </div>
 
 
@@ -88,7 +90,7 @@
                     ipcRenderer.send('openMap')
                 }
             });
-			
+
 			var t, open, close;
 			function idleTimer() {
 				window.onload=resetTimer;
@@ -96,12 +98,12 @@
 				ipcRenderer.on('reset', function() {
 					resetTimer();
 				})
-				
+
 				function rotation() {
 					ipcRenderer.send('closeShowing');
 					ipcRenderer.send('closeMeet');
 					ipcRenderer.send('closeMap');
-					
+
 					open = setInterval(function() {
 						ipcRenderer.send('openMap');
 						close = setTimeout(function() {
@@ -109,7 +111,7 @@
 						}, 10000);
 					}, 20000);
 				}
-				
+
 				function resetTimer() {
 					clearTimeout(close);
 					clearInterval(open);
@@ -117,7 +119,7 @@
 					t = setTimeout(rotation, 30000);
 				}
 			}
-			
+
 			idleTimer();
         </script>
     </body>

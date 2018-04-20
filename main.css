@@ -1,8 +1,17 @@
+html{
+  position: relative;
+  top:-8px;
+}
 body {
     background-color: black;
     overflow: hidden;
 }
-
+#embed-wrapper{
+     position: absolute;
+     height: 100%;
+     width: 100%;
+     pointer-events: none;
+}
 .box {
 
 }
@@ -192,4 +201,5 @@ body {
 	font-size: 1em;
 	margin-left: auto;
 	margin-right: auto;
+  text-align: center;
 }
