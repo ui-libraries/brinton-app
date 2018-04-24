@@ -11,13 +11,14 @@ Thanks to University of Iowa's Digital Scholarship and Publishing Studio for hos
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- INCLUDES -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
       <!-- include leaflet / slider css, js local files -->
       <script src="https://cdn.jsdelivr.net/leaflet/1.0.0-rc.3/leaflet-src.js"></script>
 
       <link rel="stylesheet" href="../main.css">
       <link rel="stylesheet" href="public/leaflet-1/leaflet.css" />
 	  <!--OLD LINK IS HERE - <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1.0.0-rc.3/leaflet.css" /> -->
-      <script src="public/leafletSlider-1.0.2/leaflet.SliderControl.min.js"></script>
+      <script src="../dataAndSlider.js"></script>
       <!-- include a pretty little stamenizer -->
       <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
       <!-- include fuse first, then the leaflet plugins that use fuse searching -->
@@ -33,7 +34,7 @@ Thanks to University of Iowa's Digital Scholarship and Publishing Studio for hos
 	    <!-- Load Esri Leaflet from CDN -->
   <script src="https://cdn.jsdelivr.net/leaflet.esri/2.0.2/esri-leaflet.js"></script>
       <!-- include json data points -->
-      <script src="brintondata2.js"></script>
+      <!-- <script src="brintondata2.js"></script> -->
 
 
 	  <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -57,10 +58,14 @@ Thanks to University of Iowa's Digital Scholarship and Publishing Studio for hos
 
   <body>
 
-    <img id="icon" src="../icon.png" width="75" height="75" style="position:fixed;">
+    <img id="icon" src="../icon.png" width="75" height="75" style="position:fixed; border-radius: 8px;">
 
     <!-- provide the map with a div to live inside -->
-    <div id="map" style="width: 100%; height: 900px; position: absolute"></div>
+    <div id="map" style="width: 100%; height: 100%; position: absolute"></div>
+	
+	<div id="feature_infos">
+		<div id="info"><p>Click on the dots to see information on the venues Brinton traveled to or use the slider in the top right corner to view his path from venue to venue.</p></div>
+	</div>
 
     <script>
       // set up with openstreetmaps
@@ -118,7 +123,8 @@ Thanks to University of Iowa's Digital Scholarship and Publishing Studio for hos
       var map = L.map('map', {
 	  center: [37.2, -87],
 	  zoom: 6,
-	  layers: [grayscale]
+	  layers: [grayscale],
+	  zoomControl: false,
 	  });
 
 
@@ -137,26 +143,33 @@ Thanks to University of Iowa's Digital Scholarship and Publishing Studio for hos
       // those params are coming automatically from the geoJson method
       var onEachFeature = function(feature, layer) {
         if (feature.properties) {
-          var prop = feature.properties;
-		  var houseTakes, amount;
-          // make a cool little html popup with properties
-		  if (prop['House_takes'] != "No Data"){
-			houseTakes = prop['House_takes'] +'%<br>';
-		  }else{
-			houseTakes = prop['House_takes'] +'<br>';
+			var prop = feature.properties;
+			var houseTakes, amount;
+			if (prop['House_takes'] != "No Data"){
+				houseTakes = prop['House_takes'] +'%<br>';
+			} else{
+				houseTakes = prop['House_takes'] +'<br>';
 			}
 			if (prop['Amount_Made'] != "No Data"){
-			amount = '$'+prop['Amount_Made'] +'<br>';
-		  }else{
-			amount = prop['Amount_Made'] +'<br>';
+				amount = '$'+prop['Amount_Made'] +'<br>';
+			} else{
+				amount = prop['Amount_Made'] +'<br>';
 			}
-            var popup = '<h3>'+prop['Venue']+'  '+prop['Town']+', '+prop['State']+'<br>'+prop['Month']+' '+prop['Day']+' '+prop['Year']+'</h3>'+'Amount Made: '+ amount +'House take: '+ houseTakes +'Notes: '+prop['Notes'];
-            // add known info about event to the description
+            /*var popup = '<h3>'+prop['Venue']+'  '+prop['Town']+', '+prop['State']+'<br>'+prop['Month']+' '+prop['Day']+' '+prop['Year']+'</h3>'+'Amount Made: '+ amount +'House take: '+ houseTakes +'Notes: '+prop['Notes'];*/
 
-          // you must create a layer property on each feature or else
-          // the search results won't know where the item is on the map / layer
-          feature.layer = layer;
-          layer.bindPopup(popup, {maxWidth: "auto"});
+			// you must create a layer property on each feature or else
+			// the search results won't know where the item is on the map / layer
+			feature.layer = layer;
+			//layer.bindPopup(popup, {maxWidth: "auto"});
+		  
+			layer.on('click', function(e) {
+				//added the following condition so there wouldn't be a blank spot if there wasn't a venue listed
+				if ((prop['Venue'] == "") || (prop['Venue'] == prop['Town']+', '+prop['State'])) {
+					document.getElementById("info").innerHTML = '<h4>'+prop['Town']+', '+prop['State']+'<br>'+prop['Month']+' '+prop['Day']+' '+prop['Year']+'</h4>'+'<p>'+'Amount Made: '+ amount +'House take: '+ houseTakes +'Notes: '+prop['Notes']+'</p>';
+				} else {
+					document.getElementById("info").innerHTML = '<h4>'+prop['Venue']+'<br>'+prop['Town']+', '+prop['State']+'<br>'+prop['Month']+' '+prop['Day']+' '+prop['Year']+'</h4>'+'<p>'+'Amount Made: '+ amount +'House take: '+ houseTakes +'Notes: '+prop['Notes']+'</p>';
+				}
+			})
         }
       }; // end onEachFeature
 
@@ -173,20 +186,22 @@ Thanks to University of Iowa's Digital Scholarship and Publishing Studio for hos
 	   var CircleMarkers = {
         radius: 6,
         fillColor: "#000000",
-        color: "#000000",
-        weight: 1,
+        color: "#ffa500",
+        weight: 2,
         opacity: 0.1,
-        fillOpacity: 0.1
+        fillOpacity: 0.1,
+		stroke: true,
       };
 
       // used by the timesliding layer
-      var redCircleMarkers = {
-        radius: 7,
-        fillColor: "#ED1C24",
-        color: "#ED1C24",
+      var orangeCircleMarkers = {
+        radius: 6,
+        fillColor: "#ffa500",
+        color: "#000000",
         weight: 1,
         opacity: 1,
-        fillOpacity: 0.9
+        fillOpacity: 0.9,
+		stroke: true,
       };
 
       var purpleCircleMarkers = {
@@ -228,16 +243,16 @@ Thanks to University of Iowa's Digital Scholarship and Publishing Studio for hos
 
 
        //now make a timeline layer that the slider can manipulate - REMOVED
-      var timelineLayer = L.geoJson(brintondata, {
+      var timelineLayer = L.geoJson(brintondata2, {
         onEachFeature: onEachFeature,
         pointToLayer: function(feature, latlng) {
-          return L.circleMarker(latlng, redCircleMarkers);
+          return L.circleMarker(latlng, orangeCircleMarkers);
         }
       });
 
       // make a search layer
       // now make a timeline layer that the slider can manipulate
-      var searchLayer = L.geoJson(brintondata, {
+      var searchLayer = L.geoJson(brintondata2, {
         onEachFeature: onEachFeature,
         pointToLayer: function(feature, latlng) {
           return L.circleMarker(latlng, greenCircleMarkers);
@@ -279,8 +294,8 @@ Thanks to University of Iowa's Digital Scholarship and Publishing Studio for hos
         }
       };
       var searchControl = L.control.fuseSearch(searchOptions);
-      map.addControl(searchControl);
-      searchControl.indexFeatures(brintondata, ['Town', 'Notes']);
+      //map.addControl(searchControl);
+      //searchControl.indexFeatures(brintondata, ['Town', 'Notes']);
 
       displayFeatures(brintondata, searchLayer);
 
@@ -320,7 +335,7 @@ Thanks to University of Iowa's Digital Scholarship and Publishing Studio for hos
 
 //	    var grayscale = L.tileLayer(mbUrl, {id: 'mapbox.mapbox-terrain-v2', attribution: mbAttr});
 
-	 var brintondata = new L.geoJson(brintondata, {
+	 var brintondata = new L.geoJson(brintondata2, {
 	  onEachFeature: onEachFeature,
 pointToLayer: function (feature, latlng) {
         return L.circleMarker(latlng, CircleMarkers);
