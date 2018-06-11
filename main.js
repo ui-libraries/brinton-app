@@ -59,6 +59,7 @@ function createWindow() {
 
 	ipcMain.on('closeMap', function() {
         map.hide()
+		map.webContents.send('resetBtns')
     })
 
 	ipcMain.on('openMap', function() {
